@@ -1,6 +1,8 @@
-FROM golang:latest
+FROM golang:alpine
+RUN apk add git
 RUN go env -w GO111MODULE=off
 RUN go get -u github.com/oncilla/old-man-yells-at/cmd/old-man-yells-at
+RUN apk del git
 WORKDIR /
 RUN mkdir input
 RUN mkdir output
