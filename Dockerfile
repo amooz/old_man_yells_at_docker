@@ -1,7 +1,9 @@
-# syntax=docker/dockerfile:1
-
-FROM golang
-WORKDIR /app
-COPY make_icons .
+FROM golang:latest
+RUN go env -w GO111MODULE=off
 RUN go get -u github.com/oncilla/old-man-yells-at/cmd/old-man-yells-at
-CMD ["make_icons"]
+WORKDIR /
+RUN mkdir input
+RUN mkdir output
+COPY ./make_icons.sh .
+RUN chmod +x make_icons.sh
+ENTRYPOINT ["./make_icons.sh"]
