@@ -1,7 +1,6 @@
 FROM golang:alpine3.17
 RUN apk add git
-RUN go env -w GO111MODULE=off
-RUN go get -u github.com/oncilla/old-man-yells-at/cmd/old-man-yells-at
+RUN go install github.com/oncilla/old-man-yells-at/cmd/old-man-yells-at@latest
 RUN apk del git
 WORKDIR /
 RUN mkdir input
